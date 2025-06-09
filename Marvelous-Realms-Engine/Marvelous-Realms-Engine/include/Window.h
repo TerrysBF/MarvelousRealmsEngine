@@ -2,36 +2,71 @@
 
 #include "Prerequisites.h"
 
-// Clase encargada de manejar la ventana principal de la aplicación.
+/**
+ * @class Window
+ * @brief Clase encargada de manejar una ventana gráfica usando SFML.
+ */
 class
   Window {
 public:
+  /**
+   * @brief Constructor por defecto.
+   */
   Window() = default;
 
-  // Constructor con tamaño y título
+  /**
+   * @brief Constructor que inicializa la ventana con dimensiones y título.
+   * @param width Ancho de la ventana.
+   * @param height Alto de la ventana.
+   * @param title Título que aparecerá en la barra superior.
+   */
   Window(int width, int height, const std::string& title);
 
+  /**
+   * @brief Destructor.
+   */
   ~Window();
 
-  // Maneja los eventos del sistema (teclado, ratón, etc.)
-  void handleEvents();
+  /**
+   * @brief Maneja eventos del sistema como teclado y ratón.
+   */
+  void 
+    handleEvents();
 
-  // Verifica si la ventana está abierta
-  bool isOpen() const;
+  /**
+   * @brief Verifica si la ventana sigue abierta.
+   * @return true si la ventana está abierta, false en caso contrario.
+   */
+  bool 
+    isOpen() const;
 
-  // Limpia la pantalla con un color específico
-  void clear(const sf::Color& color = sf::Color(0, 0, 0, 255));
+  /**
+   * @brief Limpia la ventana con un color determinado.
+   * @param color Color de fondo (por defecto negro opaco).
+   */
+  void 
+    clear(const sf::Color& color = sf::Color(0, 0, 0, 255));
 
-  // Dibuja un objeto en pantalla
-  void draw(const sf::Drawable& drawable, const 
-    sf::RenderStates& states = sf::RenderStates::Default);
+  /**
+   * @brief Dibuja un objeto en la ventana.
+   * @param drawable Objeto que puede ser renderizado.
+   * @param states Opcionales estados de renderizado (por defecto: RenderStates::Default).
+   */
+  void 
+    draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default);
 
-  // Muestra el contenido actual en la ventana
-  void display();
+  /**
+   * @brief Muestra el contenido renderizado en pantalla.
+   */
+  void 
+    display();
 
-  // Cierra la ventana y libera recursos
-  void destroy();
+  /**
+   * @brief Libera recursos y cierra la ventana.
+   */
+  void 
+    destroy();
 
 private:
-  sf::RenderWindow* m_window = nullptr; // Ventana renderizada con SFML
+  sf::RenderWindow* m_window = nullptr; ///< Puntero a la ventana renderizada por SFML
 };

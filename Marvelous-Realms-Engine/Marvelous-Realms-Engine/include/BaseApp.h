@@ -3,30 +3,51 @@
 #include <Prerequisites.h>
 #include "Window.h"
 
-// Clase principal de la aplicación.
-// Encargada de inicializar, ejecutar, actualizar y renderizar el contenido.
+/**
+ * @class BaseApp
+ * @brief Clase principal encargada de manejar el ciclo de vida de la aplicación.
+ */
 class
   BaseApp {
 public:
+  /**
+   * @brief Constructor por defecto.
+   */
   BaseApp() = default;
+
+  /**
+   * @brief Destructor.
+   */
   ~BaseApp();
 
-  // Ejecuta la aplicación desde main.
+  /**
+   * @brief Ejecuta el ciclo principal de la aplicación.
+   * @return Código de salida (0 si finaliza correctamente).
+   */
   int run();
 
-  // Inicializa los componentes necesarios.
+  /**
+   * @brief Inicializa los recursos de la aplicación.
+   * @return true si la inicialización fue exitosa, false en caso contrario.
+   */
   bool init();
 
-  // Actualización por frame.
+  /**
+   * @brief Actualiza la lógica de la aplicación por frame.
+   */
   void update();
 
-  // Renderizado de elementos gráficos.
+  /**
+   * @brief Renderiza los elementos gráficos.
+   */
   void render();
 
-  // Libera recursos y finaliza la aplicación.
+  /**
+   * @brief Libera recursos y cierra la aplicación.
+   */
   void destroy();
 
 private:
-  Window* m_window = nullptr;        // Ventana principal de la aplicación
-  sf::CircleShape* m_circle = nullptr; // Elemento gráfico de ejemplo
+  Window* m_window = nullptr;         ///< Ventana principal
+  sf::CircleShape* m_circle = nullptr; ///< Elemento gráfico de ejemplo
 };

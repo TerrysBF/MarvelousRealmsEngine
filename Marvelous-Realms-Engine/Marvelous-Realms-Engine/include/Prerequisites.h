@@ -1,6 +1,9 @@
 #pragma once
 
-// Librerías  
+/// @file
+/// @brief Definiciones comunes, macros y enumeraciones para el proyecto.
+
+// Librerías estándar
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -9,12 +12,17 @@
 #include <fstream>
 #include <unordered_map>
 
+// Librerías de terceros
 #include <SFML/Graphics.hpp>
 
-// Libera de forma segura un puntero y lo pone en nullptr
+/// @brief Libera de forma segura un puntero asignado dinámicamente y lo establece en nullptr.
+/// @param x Puntero a liberar.
 #define SAFE_PTR_RELEASE(x) if (x != nullptr) { delete x; x = nullptr; }
 
-// Macro para mostrar un mensaje de creación de recurso
+/// @brief Muestra un mensaje en consola indicando la creación de un recurso.
+/// @param classObj Nombre de la clase donde ocurre.
+/// @param method Nombre del método donde se llama.
+/// @param state Estado del recurso (por ejemplo: "OK", "FAILED").
 #define MESSAGE(classObj, method, state)                           \
 {                                                                  \
     std::ostringstream os_;                                        \
@@ -23,7 +31,10 @@
     std::cerr << os_.str();                                        \
 }
 
-// Macro para mostrar errores en consola y cerrar la aplicación
+/// @brief Muestra un mensaje de error en consola, incluye detalles del parámetro con error, y finaliza el programa.
+/// @param classObj Nombre de la clase donde ocurre el error.
+/// @param method Nombre del método donde se detecta el error.
+/// @param errorMSG Descripción del error detectado.
 #define ERROR(classObj, method, errorMSG)                          \
 {                                                                  \
     std::ostringstream os_;                                        \
@@ -33,14 +44,12 @@
     exit(1);                                                       \
 }
 
-// Enumeraciones 
-
-enum
-  ShapeType
-{
-  EMPTY = 0,
-  CIRCLE = 1,
-  RECTANGLE = 2,
-  TRIANGLE = 3,
-  POLYGON = 4
+/// @enum ShapeType
+/// @brief Enumeración que define los tipos de figuras geométricas que se pueden crear o renderizar.
+enum ShapeType {
+  EMPTY = 0,      ///< Valor por defecto, sin figura.
+  CIRCLE = 1,     ///< Figura de tipo círculo.
+  RECTANGLE = 2,  ///< Figura de tipo rectángulo.
+  TRIANGLE = 3,   ///< Figura de tipo triángulo.
+  POLYGON = 4     ///< Figura de tipo polígono con múltiples vértices.
 };
