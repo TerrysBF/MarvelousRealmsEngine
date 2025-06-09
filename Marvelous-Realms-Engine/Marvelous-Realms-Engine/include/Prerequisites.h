@@ -5,7 +5,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
-//#include <thread>
+#include <thread>
 #include <map>
 #include <fstream>
 #include <unordered_map>
@@ -46,4 +46,3 @@ enum
     TRIANGLE = 3,
     POLYGON = 4
 };
-
