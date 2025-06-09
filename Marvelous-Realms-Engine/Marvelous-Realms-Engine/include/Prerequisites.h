@@ -1,48 +1,46 @@
 #pragma once
 
-//Librerías STD - Estándar
+// Librerías  
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
-#include <thread>
 #include <map>
 #include <fstream>
 #include <unordered_map>
 
-//Third Parties
 #include <SFML/Graphics.hpp>
 
-//Imgui - Interfaz de usuario
+// Libera de forma segura un puntero y lo pone en nullptr
+#define SAFE_PTR_RELEASE(x) if (x != nullptr) { delete x; x = nullptr; }
 
-
-// MACRO for safe release of resources
-#define SAFE_PTR_RELEASE(x) if(x != nullptr) { delete x; x = nullptr; }
-
-#define MESSAGE(classObj, method, state)                      \
-{                                                             \
-    std::ostringstream os_;                                   \
-    os_ << classObj << "::" << method << " : "                \
-        << "[CREATION OF RESOURCE" << ": " << state "] \n";\
-    std::cerr << os_.str();                                   \
+// Macro para mostrar un mensaje de creación de recurso
+#define MESSAGE(classObj, method, state)                           \
+{                                                                  \
+    std::ostringstream os_;                                        \
+    os_ << classObj << "::" << method << " : "                     \
+        << "[CREATION OF RESOURCE: " << state << "]\n";            \
+    std::cerr << os_.str();                                        \
 }
 
-#define ERROR(classObj, method, errorMSG)                         \
-{                                                                 \
-    std::ostringstream os_;                                       \
-    os_ << "ERROR : " << classObj << "::" << method << " : "      \
-        << "  Error in data from params [" << errorMSG"] \n"; \
-    std::cerr << os_.str();                                       \
-    exit(1);                                                      \
+// Macro para mostrar errores en consola y cerrar la aplicación
+#define ERROR(classObj, method, errorMSG)                          \
+{                                                                  \
+    std::ostringstream os_;                                        \
+    os_ << "ERROR : " << classObj << "::" << method << " : "       \
+        << "Error in data from params [" << errorMSG << "]\n";     \
+    std::cerr << os_.str();                                        \
+    exit(1);                                                       \
 }
 
-//ENUMS
+// Enumeraciones 
+
 enum
-    ShapeType
+  ShapeType
 {
-    EMPTY = 0,
-    CIRCLE = 1,
-    RECTANGLE = 2,
-    TRIANGLE = 3,
-    POLYGON = 4
+  EMPTY = 0,
+  CIRCLE = 1,
+  RECTANGLE = 2,
+  TRIANGLE = 3,
+  POLYGON = 4
 };

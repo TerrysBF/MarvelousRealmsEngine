@@ -1,28 +1,32 @@
 #pragma once
+
 #include <Prerequisites.h>
 #include "Window.h"
 
-class BaseApp {
+// Clase principal de la aplicación.
+// Encargada de inicializar, ejecutar, actualizar y renderizar el contenido.
+class
+  BaseApp {
 public:
-	BaseApp() = default;
-	~BaseApp();
+  BaseApp() = default;
+  ~BaseApp();
 
-	//Función encargada de ejecutar la aplicación en main
-	int run();
+  // Ejecuta la aplicación desde main.
+  int run();
 
-	//Función de inicialización
-	bool init();
+  // Inicializa los componentes necesarios.
+  bool init();
 
-	//Función que se actualiza por frame
-	void update();
+  // Actualización por frame.
+  void update();
 
-	//Función de renderizado
-	void render();
+  // Renderizado de elementos gráficos.
+  void render();
 
-	void destroy();
+  // Libera recursos y finaliza la aplicación.
+  void destroy();
 
 private:
-	Window* m_window;
-	//sf::RenderWindow* m_window;
-	sf::CircleShape* m_circle;
+  Window* m_window = nullptr;        // Ventana principal de la aplicación
+  sf::CircleShape* m_circle = nullptr; // Elemento gráfico de ejemplo
 };

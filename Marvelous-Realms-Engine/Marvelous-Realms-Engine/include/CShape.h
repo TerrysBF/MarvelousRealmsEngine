@@ -1,48 +1,51 @@
 #pragma once
+
 #include "Prerequisites.h"
 
 class Window;
 
+// Clase encargada de representar una figura gráfica y sus propiedades.
 class
-	CShape {
+  CShape {
 public:
-	CShape() = default;
+  CShape() = default;
 
-	CShape(ShapeType shapeType) : m_shape(nullptr), m_shapeType(ShapeType::EMPTY) {}
+  // Constructor con tipo de figura
+  CShape(ShapeType shapeType) : m_shape(nullptr), m_shapeType(ShapeType::EMPTY) {}
 
-	~CShape() = default;
+  ~CShape() = default;
 
-	sf::Shape*
-		createShape(ShapeType shapeType);
+  // Crea una figura del tipo especificado
+  sf::Shape* createShape(ShapeType shapeType);
 
-	void
-		update(float deltaTime);
+  // Actualiza la figura con el tiempo delta
+  void update(float deltaTime);
 
-	void
-		render(Window& window);
+  // Renderiza la figura en la ventana proporcionada
+  void render(Window& window);
 
-	void
-		setPosition(float x, float y);
+  // Establece la posición con coordenadas
+  void setPosition(float x, float y);
 
-	void
-		setPosition(const sf::Vector2f& position);
+  // Establece la posición con vector
+  void setPosition(const sf::Vector2f& position);
 
-	void
-		setFillColor(const sf::Color& color);
+  // Cambia el color de relleno de la figura
+  void setFillColor(const sf::Color& color);
 
-	void
-		setRotation(float angle);
+  // Establece el ángulo de rotación
+  void setRotation(float angle);
 
-	void
-		setScale(const sf::Vector2f& scl);
+  // Cambia la escala de la figura
+  void setScale(const sf::Vector2f& scl);
 
-	sf::Shape*
-		getShape() {
-		return m_shape;
-	}
+  // Devuelve un puntero a la figura
+  sf::Shape* getShape() {
+    return m_shape;
+  }
 
 private:
-	sf::Shape* m_shape;
-	ShapeType m_shapeType;
-	sf::VertexArray* m_line;
+  sf::Shape* m_shape = nullptr;           // Figura gráfica principal
+  ShapeType m_shapeType = ShapeType::EMPTY; // Tipo de figura
+  sf::VertexArray* m_line = nullptr;      // Línea auxiliar para polígonos, si aplica
 };
