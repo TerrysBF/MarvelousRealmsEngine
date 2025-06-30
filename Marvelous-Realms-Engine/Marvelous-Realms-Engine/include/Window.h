@@ -31,21 +31,21 @@ public:
    * @brief Maneja eventos del sistema como teclado y ratón.
    */
   void 
-    handleEvents();
+  handleEvents();
 
   /**
    * @brief Verifica si la ventana sigue abierta.
    * @return true si la ventana está abierta, false en caso contrario.
    */
   bool 
-    isOpen() const;
+  isOpen() const;
 
   /**
    * @brief Limpia la ventana con un color determinado.
    * @param color Color de fondo (por defecto negro opaco).
    */
   void 
-    clear(const sf::Color& color = sf::Color(0, 0, 0, 255));
+  clear(const sf::Color& color = sf::Color(0, 0, 0, 255));
 
   /**
    * @brief Dibuja un objeto en la ventana.
@@ -53,20 +53,21 @@ public:
    * @param states Opcionales estados de renderizado (por defecto: RenderStates::Default).
    */
   void 
-    draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default);
+  draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default);
 
   /**
    * @brief Muestra el contenido renderizado en pantalla.
    */
   void 
-    display();
+  display();
 
   /**
    * @brief Libera recursos y cierra la ventana.
    */
   void 
-    destroy();
+  destroy();
 
 private:
+  EngineUtilities::TUniquePtr<sf::RenderWindow> m_windowPtr;
   sf::RenderWindow* m_window = nullptr; ///< Puntero a la ventana renderizada por SFML
 };

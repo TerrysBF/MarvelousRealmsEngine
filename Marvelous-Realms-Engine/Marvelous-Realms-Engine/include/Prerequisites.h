@@ -8,12 +8,17 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <thread>
 #include <map>
 #include <fstream>
 #include <unordered_map>
 
 // Librerías de terceros
 #include <SFML/Graphics.hpp>
+#include "Memory\TSharedPointer.h"
+#include "Memory\TWeakPointer.h"
+#include "Memory\TStaticPtr.h"
+#include "Memory\TUniquePtr.h"
 
 /// @brief Libera de forma segura un puntero asignado dinámicamente y lo establece en nullptr.
 /// @param x Puntero a liberar.

@@ -2,6 +2,7 @@
 
 #include <Prerequisites.h>
 #include "Window.h"
+#include "CShape.h"
 
 /**
  * @class BaseApp
@@ -24,30 +25,37 @@ public:
    * @brief Ejecuta el ciclo principal de la aplicación.
    * @return Código de salida (0 si finaliza correctamente).
    */
-  int run();
+  int 
+  run();
 
   /**
    * @brief Inicializa los recursos de la aplicación.
    * @return true si la inicialización fue exitosa, false en caso contrario.
    */
-  bool init();
+  bool 
+  init();
 
   /**
    * @brief Actualiza la lógica de la aplicación por frame.
    */
-  void update();
+  void 
+  update();
 
   /**
    * @brief Renderiza los elementos gráficos.
    */
-  void render();
+  void 
+  render();
 
   /**
    * @brief Libera recursos y cierra la aplicación.
    */
-  void destroy();
+  void 
+  destroy();
 
 private:
-  Window* m_window = nullptr;         ///< Ventana principal
-  sf::CircleShape* m_circle = nullptr; ///< Elemento gráfico de ejemplo
+  EngineUtilities::TSharedPointer<Window> m_windowPtr;
+  EngineUtilities::TSharedPointer<CShape>   m_shapePtr;
+  /*Window* m_window = nullptr;         ///< Ventana principal
+  sf::CircleShape* m_circle = nullptr; ///< Elemento gráfico de ejemplo*/
 };
