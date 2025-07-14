@@ -1,104 +1,57 @@
 #pragma once
-
 #include "Prerequisites.h"
 #include "ECS\Component.h"
-
 class Window;
 
-/**
- * @class CShape
- * @brief Representa una figura gráfica con propiedades como posición, color y escala.
- */
 class
-  CShape : public Component {
+	CShape : public Component {
 public:
-  /**
-   * @brief Constructor por defecto.
-   */
-  CShape() = default;
+	CShape() = default;
 
-  /**
-   * @brief Constructor que inicializa el tipo de figura.
-   * @param shapeType Tipo de figura (círculo, rectángulo, etc.).
-   */
-  CShape(ShapeType shapeType) : m_shape(nullptr), m_shapeType(ShapeType::EMPTY),
-    Component(ComponentType::SHAPE) { }
+	CShape(ShapeType shapeType) : m_shapePtr(nullptr),
+		m_shapeType(ShapeType::EMPTY),
+		Component(ComponentType::SHAPE) { }
 
-  /**
-   * @brief Destructor.
-   */
-  virtual
-  ~CShape() = default;
+	virtual
+		~CShape() = default;
 
-  /**
-   * @brief Crea una figura gráfica del tipo especificado.
-   * @param shapeType Tipo de figura a crear.
-   * @return Puntero a la figura creada.
-   */
-  void
-  createShape(ShapeType shapeType);
+	/**
+		* @Brief: This method is in charge of creating a shape based on the type provided.
+		* @Param: shapeType: The type of shape to create.
+		*/
+	void
+		createShape(ShapeType shapeType);
 
-  /**
-   * @brief Actualiza el estado de la figura según el tiempo transcurrido.
-   * @param deltaTime Tiempo desde el último frame.
-   */
-  void 
-  update(float deltaTime);
+	void
+		start() override;
 
-  /**
-   * @brief Renderiza la figura en la ventana proporcionada.
-   * @param window Ventana donde se dibuja la figura.
-   */
-  void 
-  render(const EngineUtilities::TSharedPointer<Window>& window);
+	void
+		update(float deltaTime) override;
 
-  /**
-   * @brief Establece la posición de la figura mediante coordenadas.
-   * @param x Coordenada X.
-   * @param y Coordenada Y.
-   */
-  void 
-  setPosition(float x, float y);
+	void
+		render(const EngineUtilities::TSharedPointer<Window>& window) override;
 
-  /**
-   * @brief Establece la posición de la figura mediante un vector.
-   * @param position Vector con coordenadas X e Y.
-   */
-  void 
-  setPosition(const sf::Vector2f& position);
+	void
+		destroy() override;
 
-  /**
-   * @brief Cambia el color de relleno de la figura.
-   * @param color Color a aplicar.
-   */
-  void 
-  setFillColor(const sf::Color& color);
+	void
+		setPosition(float x, float y);
 
-  /**
-   * @brief Establece el ángulo de rotación de la figura.
-   * @param angle Ángulo en grados.
-   */
-  void 
-  setRotation(float angle);
+	void
+		setPosition(const sf::Vector2f& position);
 
-  /**
-   * @brief Escala la figura en X y Y.
-   * @param scl Vector de escala.
-   */
-  void 
-  setScale(const sf::Vector2f& scl);
+	void
+		setFillColor(const sf::Color& color);
 
-  /**
-   * @brief Devuelve un puntero a la figura actual.
-   * @return Puntero a sf::Shape.
-   */
-  /*sf::Shape* getShape() {
-    return m_shape;
-  }*/
+	void
+		setRotation(float angle);
+
+	void
+		setScale(const sf::Vector2f& scl);
 
 private:
-  EngineUtilities::TSharedPointer<sf::Shape> m_shapePtr;
-  //sf::Shape* m_shape = nullptr;           ///< Figura gráfica principal
-  ShapeType m_shapeType; //= ShapeType::EMPTY; ///< Tipo de figura
-  sf::VertexArray* m_line; //= nullptr;      ///< Línea auxiliar para polígonos, si aplica
+	EngineUtilities::TSharedPointer<sf::Shape> m_shapePtr;
+	//sf::Shape* m_shape;
+	ShapeType m_shapeType;
+	sf::VertexArray* m_line;
 };

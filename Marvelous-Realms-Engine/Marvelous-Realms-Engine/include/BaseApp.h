@@ -1,61 +1,40 @@
 #pragma once
-
-#include <Prerequisites.h>
+#include "Prerequisites.h"
 #include "Window.h"
 #include "CShape.h"
+#include "ECS\Actor.h"
 
-/**
- * @class BaseApp
- * @brief Clase principal encargada de manejar el ciclo de vida de la aplicación.
- */
 class
-  BaseApp {
+	BaseApp {
 public:
-  /**
-   * @brief Constructor por defecto.
-   */
-  BaseApp() = default;
+	BaseApp() = default;
+	~BaseApp();
 
-  /**
-   * @brief Destructor.
-   */
-  ~BaseApp();
+	// Funcion encargada de ejecutar la aplicacion en main
+	int
+		run();
 
-  /**
-   * @brief Ejecuta el ciclo principal de la aplicación.
-   * @return Código de salida (0 si finaliza correctamente).
-   */
-  int 
-  run();
+	// Funcion de inicializacion
+	bool
+		init();
 
-  /**
-   * @brief Inicializa los recursos de la aplicación.
-   * @return true si la inicialización fue exitosa, false en caso contrario.
-   */
-  bool 
-  init();
+	// Funcion que se actualiza por frame
+	void
+		update();
 
-  /**
-   * @brief Actualiza la lógica de la aplicación por frame.
-   */
-  void 
-  update();
+	// Funcion de renderizado
+	void
+		render();
 
-  /**
-   * @brief Renderiza los elementos gráficos.
-   */
-  void 
-  render();
+	void
+		destroy();
 
-  /**
-   * @brief Libera recursos y cierra la aplicación.
-   */
-  void 
-  destroy();
 
 private:
-  EngineUtilities::TSharedPointer<Window> m_windowPtr;
-  EngineUtilities::TSharedPointer<CShape>   m_shapePtr;
-  /*Window* m_window = nullptr;         ///< Ventana principal
-  sf::CircleShape* m_circle = nullptr; ///< Elemento gráfico de ejemplo*/
+	EngineUtilities::TSharedPointer<Window> m_windowPtr;
+
+	EngineUtilities::TSharedPointer<CShape>   m_shapePtr;
+
+	EngineUtilities::TSharedPointer<Actor> m_ACirlce;
+
 };
