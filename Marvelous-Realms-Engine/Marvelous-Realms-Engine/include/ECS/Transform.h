@@ -3,6 +3,10 @@
 #include "Component.h"
 #include "Window.h"
 
+/**
+ * @file Transform.h
+ * @brief Define el componente Transform para gestionar la posición, rotación y escala.
+ */
 class
   Transform : public Component {
 public:
@@ -11,9 +15,18 @@ public:
     scale(1.0f, 1.0f),
     Component(ComponentType::TRANSFORM) {}
 
+  /**
+   * @brief Destructor virtual por defecto de Transform
+   * Asegura la correcta liberación de recursos cuando una instancia de Transform
+   * es destruida, especialmente útil para herencia
+   */
   virtual
     ~Transform() = default;
 
+  /**
+   * @brief Método de inicialización del componente Transform
+   * Sobrescribe el método 'start' de la clase base Component
+   */
   void
     start() override {}
 
@@ -31,6 +44,10 @@ public:
   void
     render(const EngineUtilities::TSharedPointer<Window>& window) override {}
 
+  /**
+   * @brief Método de destrucción del componente Transform
+   * Sobrescribe el método 'destroy' de la clase base Component
+   */
   void
     destroy() {}
 

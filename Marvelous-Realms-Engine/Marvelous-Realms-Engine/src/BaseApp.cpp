@@ -1,17 +1,19 @@
 #include "BaseApp.h"
 
-BaseApp::~BaseApp() {
-}
+BaseApp::~BaseApp() {}
 
 int
-BaseApp::run() {
-	if (!init()) {
+BaseApp::run() 
+{
+	if (!init()) 
+	{
 		ERROR("BaseApp",
 			"run",
 			"Initializes result on a false statemente, check method validations");
 	}
 
-	while (m_windowPtr->isOpen()) {
+	while (m_windowPtr->isOpen()) 
+	{
 		m_windowPtr->handleEvents();
 		update();
 		render();
@@ -22,9 +24,11 @@ BaseApp::run() {
 }
 
 bool
-BaseApp::init() {
+BaseApp::init() 
+{
 	m_windowPtr = EngineUtilities::MakeShared<Window>(1920, 1080, "Labrid Engine");
-	if (!m_windowPtr) {
+	if (!m_windowPtr) 
+	{
 		ERROR("BaseApp",
 			"init",
 			"Failed to create window pointer, check memory allocation");
@@ -48,7 +52,8 @@ BaseApp::init() {
 		m_ACirlce->getComponent<Transform>()->setPosition(sf::Vector2f(100.f, 150.f));
 		//m_ACirlce->setName("Circle Actor");
 	}
-	else {
+	else 
+	{
 		ERROR("BaseApp",
 			"init",
 			"Failed to create Circle Actor, check memory allocation");
@@ -58,16 +63,20 @@ BaseApp::init() {
 }
 
 void
-BaseApp::update() {
+BaseApp::update() 
+{
 	// Update actors
-	if (!m_ACirlce.isNull()) {
+	if (!m_ACirlce.isNull()) 
+	{
 		m_ACirlce->update(0);
 	}
 }
 
 void
-BaseApp::render() {
-	if (!m_windowPtr) {
+BaseApp::render() 
+{
+	if (!m_windowPtr) 
+	{
 		return;
 	}
 	m_windowPtr->clear();
@@ -81,7 +90,4 @@ BaseApp::render() {
 }
 
 void
-BaseApp::destroy() {
-	//m_shapePtr.reset();
-	//m_window->destroy();
-}
+BaseApp::destroy() {}

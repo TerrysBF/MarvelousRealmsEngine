@@ -1,6 +1,6 @@
 #pragma once
 
-// Librerias STD
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -10,16 +10,16 @@
 #include <fstream> 
 #include <unordered_map>
 
-// Third Parties
+
 #include <SFML/Graphics.hpp>
 #include "Memory\TSharedPointer.h"
 #include "Memory\TWeakPointer.h"
 #include "Memory\TStaticPtr.h"
 #include "Memory\TUniquePtr.h"
 
-// Imgui
 
-// MACRO for safe release of resources
+
+
 #define SAFE_PTR_RELEASE(x) if(x != nullptr) { delete x; x = nullptr; }
 
 #define MESSAGE(classObj, method, state)                      \
