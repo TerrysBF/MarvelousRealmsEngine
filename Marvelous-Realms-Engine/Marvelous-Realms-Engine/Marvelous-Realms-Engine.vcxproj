@@ -94,7 +94,8 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>IMGUI_SFML_USE_LEGACY_IMTEXTUREID=1</PreprocessorDefinitions>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>./include/;C:\Users\Julio\6TO\Graficas Computacionales\MarvelousRealmsEngine\Marvelous-Realms-Engine\ThirdParties\SFML-3.0.0\include;C:\Users\Julio\6TO\Graficas Computacionales\MarvelousRealmsEngine\Marvelous-Realms-Engine\ThirdParties\imgui-sfml-master</AdditionalIncludeDirectories>
@@ -115,7 +116,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>IMGUI_SFML_USE_LEGACY_IMTEXTUREID=1</PreprocessorDefinitions>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>./include/;C:\Users\Julio\6TO\Graficas Computacionales\MarvelousRealmsEngine\Marvelous-Realms-Engine\ThirdParties\SFML-3.0.0\include;C:\Users\Julio\6TO\Graficas Computacionales\MarvelousRealmsEngine\Marvelous-Realms-Engine\ThirdParties\imgui-sfml-master</AdditionalIncludeDirectories>
@@ -135,7 +137,8 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>IMGUI_SFML_USE_LEGACY_IMTEXTUREID=1</PreprocessorDefinitions>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>./include/;C:\Users\Julio\6TO\Graficas Computacionales\MarvelousRealmsEngine\Marvelous-Realms-Engine\ThirdParties\SFML-3.0.0\include;C:\Users\Julio\6TO\Graficas Computacionales\MarvelousRealmsEngine\Marvelous-Realms-Engine\ThirdParties\imgui-sfml-master</AdditionalIncludeDirectories>
@@ -156,7 +159,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>IMGUI_SFML_USE_LEGACY_IMTEXTUREID=1</PreprocessorDefinitions>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>./include/;C:\Users\Julio\6TO\Graficas Computacionales\MarvelousRealmsEngine\Marvelous-Realms-Engine\ThirdParties\SFML-3.0.0\include;C:\Users\Julio\6TO\Graficas Computacionales\MarvelousRealmsEngine\Marvelous-Realms-Engine\ThirdParties\imgui-sfml-master</AdditionalIncludeDirectories>
@@ -179,6 +183,8 @@
     <ClCompile Include="..\ThirdParties\imgui-sfml-master\imgui_draw.cpp" />
     <ClCompile Include="..\ThirdParties\imgui-sfml-master\imgui_tables.cpp" />
     <ClCompile Include="..\ThirdParties\imgui-sfml-master\imgui_widgets.cpp" />
+    <ClCompile Include="EngineGUI.cpp" />
+    <ClCompile Include="RosourceManager.cpp" />
     <ClCompile Include="src\BaseApp.cpp" />
     <ClCompile Include="src\CShape.cpp" />
     <ClCompile Include="src\ECS\Actor.cpp" />
@@ -196,6 +202,7 @@
     <ClInclude Include="..\ThirdParties\imgui-sfml-master\imstb_rectpack.h" />
     <ClInclude Include="..\ThirdParties\imgui-sfml-master\imstb_textedit.h" />
     <ClInclude Include="..\ThirdParties\imgui-sfml-master\imstb_truetype.h" />
+    <ClInclude Include="EngineGUI.h" />
     <ClInclude Include="include\BaseApp.h" />
     <ClInclude Include="include\CShape.h" />
     <ClInclude Include="include\ECS\Actor.h" />
@@ -209,6 +216,8 @@
     <ClInclude Include="include\Prerequisites.h" />
     <ClInclude Include="include\Utilities\CVector2.h" />
     <ClInclude Include="include\Window.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

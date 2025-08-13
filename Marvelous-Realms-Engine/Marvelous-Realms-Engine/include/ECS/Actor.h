@@ -1,98 +1,107 @@
 #pragma once
 #include "../Prerequisites.h"
 #include "Entity.h"
-#include "Cshape.h"
+#include "CShape.h"
 #include "Transform.h"
 
-/**
- * @file Actor.h
- * @brief Define la clase Actor, una entidad fundamental en el motor de juego
+/*
+ * Clase Actor
+ * ===========
+ *
+ * Un Actor es una de las piezas centrales dentro del motor.
+ * Básicamente, representa cualquier objeto "vivo" en la escena:
+ * puede tener forma, posición, comportamiento y uno o más componentes
+ * que le dan sus capacidades.
+ *
+ * Hereda de Entity, así que comparte el ciclo de vida típico:
+ * - start(): se llama al comienzo de su existencia.
+ * - update(): corre cada frame para actualizar su estado.
+ * - render(): se encarga de dibujarse.
+ * - destroy(): se invoca cuando debe limpiar sus recursos.
+ *
+ * Además, Actor sabe buscar entre sus componentes y devolverte uno
+ * específico si lo necesitas (getComponent<T>).
  */
-class
-  Actor : Entity {
+class Actor : Entity {
 public:
 
-  /**
-   * @brief Constructor por defecto de Actor
-   * Utiliza el constructor por defecto generado por el compilador
-   */
+  // Constructor sin parámetros: crea un Actor genérico con el nombre por defecto.
   Actor() = default;
 
-  /**
-   * @brief Constructor de Actor con un nombre específico
-   * @param actorName El nombre deseado para este actor
-   */
+  // Constructor con nombre: útil para identificarlo en depuración o edición.
   Actor(const std::string& actorName);
 
-  /**
-   * @brief Destructor virtual por defecto de Actor.
-   * Asegura la correcta destrucción de los actores y sus componentes derivados
+  // Destructor virtual: asegura que si hay clases derivadas, se limpien bien.
+  virtual ~Actor() = default;
+
+  /*
+   * start()
+   * -------
+   * Método que arranca la vida del Actor.
+   * Aquí podrías inicializar estados, preparar animaciones, etc.
+   * En este caso no hace nada porque probablemente la lógica se defina en clases hijas.
    */
-  virtual
-    ~Actor() = default;
+  void start() override {};
 
-  /**
-   * @brief Método de inicialización del actor
-   * Sobrescribe el método 'start' de la clase base Entity
+  /*
+   * update(deltaTime)
+   * -----------------
+   * Este se llama cada frame y recibe el tiempo transcurrido desde el último.
+   * Sirve para mover al actor, revisar colisiones, IA, etc.
    */
-  void
-    start() override {};
+  void update(float deltaTime) override;
 
-  /**
-  * @brief Método de actualización del actor por fotograma
-  * Sobrescribe el método 'update' de la clase base Entity
-  * @param deltaTime El tiempo transcurrido desde el último fotograma, en segundos
-  */
-  void
-    update(float deltaTime) override;
-
-  /**
-   * @brief Método de renderizado del actor.
-   * Sobrescribe el método 'render' de la clase base Entity
-   * @param window Un puntero compartido al objeto Window donde se renderizará el actor.
+  /*
+   * render(window)
+   * --------------
+   * Aquí se dibuja el actor usando la ventana que le pases.
+   * Ideal para delegar el renderizado a sus componentes gráficos.
    */
-  void
-    render(const EngineUtilities::TSharedPointer<Window>& window) override;
+  void render(const EngineUtilities::TSharedPointer<Window>& window) override;
 
-
-  /**
-   * @brief Método de destrucción del acto
-   * Sobrescribe el método 'destroy' de la clase base Entity
-   * Actualmente, está vacío y puede ser implementado en clases derivadas
+  /*
+   * destroy()
+   * ---------
+   * Se invoca cuando el Actor va a ser destruido.
+   * Aquí puedes liberar recursos o eliminar referencias.
+   * En esta versión queda vacío.
    */
-  void
-    destroy() override {};
+  void destroy() override {};
 
-  /**
-   * @brief Obtiene un componente específico del actor.
-   * @tparam T Tipo del componente que se va a obtener.
-   * @return Puntero compartido al componente T, o nulo  si no se encuentra.
+  /*
+   * getComponent<T>()
+   * -----------------
+   * Busca entre todos los componentes que este Actor tiene
+   * y devuelve el que coincida con el tipo que le pidas.
+   * Si no existe, regresa un puntero vacío.
+   *
+   * Ejemplo:
+   * auto shape = myActor.getComponent<CShape>();
    */
   template <typename T>
-  EngineUtilities::TSharedPointer<T>
-    getComponent();
+  EngineUtilities::TSharedPointer<T> getComponent();
 
 private:
+  // Nombre interno del actor, por defecto "Actor".
   std::string m_name = "Actor";
 };
 
-/**
- * @brief El propósito de esta función es buscar y devolver un componente específico de un actor,
- * @tparam utilizando el tipo de componente especificado como argumento de la plantilla.
- *  @return Si el componente no se encuentra, la función devuelve nulo.
+/*
+ * Implementación de getComponent<T>()
+ * -----------------------------------
+ * Recorre el vector "components" (heredado de Entity)
+ * y trata de convertir cada elemento al tipo solicitado T
+ * usando dynamic_pointer_cast. Si encuentra uno válido, lo devuelve.
+ * Si no, devuelve un puntero compartido vacío.
  */
 template<typename T>
-inline EngineUtilities::TSharedPointer<T>
-Actor::getComponent() {
-  for (auto& component : components) 
-  {
-    EngineUtilities::TSharedPointer<T> specificComponent = 
+inline EngineUtilities::TSharedPointer<T> Actor::getComponent() {
+  for (auto& component : components) {
+    EngineUtilities::TSharedPointer<T> specificComponent =
       component.template dynamic_pointer_cast<T>();
-    if (specificComponent) 
-    {
+    if (specificComponent) {
       return specificComponent;
     }
   }
-  // Devuelve un TSharedPointer vacío si no se encuentra el componente
-  return EngineUtilities::TSharedPointer<T>();
+  return EngineUtilities::TSharedPointer<T>(); // no encontrado
 }
