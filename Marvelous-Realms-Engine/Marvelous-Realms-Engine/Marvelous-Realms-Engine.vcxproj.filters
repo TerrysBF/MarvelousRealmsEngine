@@ -28,6 +28,9 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{954e2d19-c43e-406f-8348-fc1502a929bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{634c1610-2c35-4247-91c6-6067b44b5369}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -47,6 +50,24 @@
     </ClCompile>
     <ClCompile Include="src\Utilities\CVector2.cpp">
       <Filter>Archivos de origen\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParties\imgui-sfml-master\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParties\imgui-sfml-master\imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParties\imgui-sfml-master\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParties\imgui-sfml-master\imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParties\imgui-sfml-master\imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParties\imgui-sfml-master\imgui-SFML.cpp">
+      <Filter>imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +109,33 @@
     </ClInclude>
     <ClInclude Include="include\Utilities\CVector2.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParties\imgui-sfml-master\imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParties\imgui-sfml-master\imconfig-SFML.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParties\imgui-sfml-master\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParties\imgui-sfml-master\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParties\imgui-sfml-master\imgui-SFML.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParties\imgui-sfml-master\imgui-SFML_export.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParties\imgui-sfml-master\imstb_rectpack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParties\imgui-sfml-master\imstb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParties\imgui-sfml-master\imstb_truetype.h">
+      <Filter>imgui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

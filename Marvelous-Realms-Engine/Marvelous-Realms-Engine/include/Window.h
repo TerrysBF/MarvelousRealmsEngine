@@ -1,5 +1,6 @@
 #pragma once
 #include "Prerequisites.h"
+class EngineGUI;
 
 class
 	Window {
@@ -9,7 +10,7 @@ public:
 	~Window();
 
 	void
-		handleEvents();
+		handleEvents(EngineGUI& engineGUI);
 
 	bool
 		isOpen() const;
@@ -25,9 +26,17 @@ public:
 		display();
 
 	void
+		update();
+
+	void
+		render();
+
+	void
 		destroy();
 private:
-	EngineUtilities::TUniquePtr<sf::RenderWindow> m_windowPtr;
-	//sf::RenderWindow* m_window;
 	sf::View m_view;
+public:
+	EngineUtilities::TUniquePtr<sf::RenderWindow> m_windowPtr;
+	sf::Time deltaTime;
+	sf::Clock clock;
 };
