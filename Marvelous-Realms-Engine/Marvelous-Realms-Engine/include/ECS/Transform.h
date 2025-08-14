@@ -1,117 +1,109 @@
 #pragma once
-#include "Prerequisites.h"
-#include "Component.h"
-#include "Window.h"
 
 /**
  * @file Transform.h
- * @brief Define el componente Transform para gestionar la posición, rotación y escala.
+ * @brief Declares the Transform component used for managing position, rotation, and scale in entities.
  */
-class
-  Transform : public Component {
+
+#include "..//Prerequisites.h"
+#include "ECS/Component.h"
+#include "WIndow.h"
+
+
+class Window;
+
+/**
+ * @class Transform
+ * @brief Component that holds position, rotation, and scale for an entity.
+ */
+class Transform : public Component {
 public:
-  Transform() : position(0.0f, 0.0f),
-    rotation(0.0f, 0.0f),
-    scale(1.0f, 1.0f),
-    Component(ComponentType::TRANSFORM) {}
+  /**
+   * @brief Default constructor.
+   */
+  Transform()
+    : Component(ComponentType::TRANFORM),
+    m_position(0.f, 0.f),
+    m_rotation(0.f, 0.f),
+    m_scale(1.f, 1.f) {
+  }
 
   /**
-   * @brief Destructor virtual por defecto de Transform
-   * Asegura la correcta liberación de recursos cuando una instancia de Transform
-   * es destruida, especialmente útil para herencia
+   * @brief Destructor.
    */
   virtual
     ~Transform() = default;
 
-  /**
-   * @brief Método de inicialización del componente Transform
-   * Sobrescribe el método 'start' de la clase base Component
-   */
-  void
-    start() override {}
+  // M?todos override del sistema ECS
 
-  /**
-   * @brief Actualiza el componente de malla.
-   * @param deltaTime El tiempo transcurrido desde la última actualización.
-   */
+  //Quitar deltaTime al START
+  void
+    start() override;
+
+
   void
     update(float deltaTime) override {}
 
-  /**
-   * @brief Renderiza el componente de malla.
-   * @param deviceContext Contexto del dispositivo para operaciones gráficas.
-   */
+
   void
     render(const EngineUtilities::TSharedPointer<Window>& window) override {}
 
-  /**
-   * @brief Método de destrucción del componente Transform
-   * Sobrescribe el método 'destroy' de la clase base Component
-   */
   void
-    destroy() {}
+    destroy() override {
+  }
 
   void
     seek(const sf::Vector2f& targetPosition,
       float speed,
       float deltaTime,
       float range) {
-    sf::Vector2f direction = targetPosition - position;
-    float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+    sf::Vector2f direction = targetPosition - m_position;
+    float lenght = std::sqrt(direction.x * direction.x + direction.y * direction.y);
 
-    if (length > range) {
-      direction /= length;  // Normaliza el vector
-      position += direction * speed * deltaTime;
+    if (lenght > range) {
+      direction /= lenght;
+      m_position += direction * speed * deltaTime;
     }
   }
 
+  // Setters
   void
     setPosition(const sf::Vector2f& _position) {
-    position = _position;
-  }
+    m_position = _position;
+  }   //Se supone que es para que actualice el valor de la clase 
 
   void
     setRotation(const sf::Vector2f& _rotation) {
-    rotation = _rotation;
+    m_rotation = _rotation;
   }
 
   void
     setScale(const sf::Vector2f& _scale) {
-    scale = _scale;
-  }
-
-  sf::Vector2f&
-    getPosition() {
-    return position;
+    m_scale = _scale;
   }
 
 
-  sf::Vector2f&
-    getRotation() {
-    return rotation;
+  // Getters
+  sf::Vector2f
+    getPosition() const
+  {
+    return m_position;
   }
 
-  sf::Vector2f&
-    getScale() {
-    return scale;
+  sf::Vector2f
+    getRotation() const
+  {
+    return m_rotation;
   }
 
-  float*
-    getPosData() {
-    return &position.x;
+  sf::Vector2f
+    getScale() const
+  {
+    return m_scale;
   }
 
-  float*
-    getRotData() {
-    return &rotation.x;
-  }
-
-  float*
-    getScaData() {
-    return &scale.x;
-  }
 private:
-  sf::Vector2f position;  // Posición del objeto
-  sf::Vector2f rotation;  // Rotación del objeto
-  sf::Vector2f scale;     // Escala del objeto
+  sf::Vector2f m_position;
+  sf::Vector2f m_rotation;
+  sf::Vector2f m_scale;
 };

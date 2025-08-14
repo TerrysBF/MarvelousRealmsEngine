@@ -6,11 +6,11 @@ public:
   // Componentes
   float x, y;
 
-  // ——— Constructores ———
+  // ??? Constructores ???
   CVector2();
   CVector2(float x_, float y_);
 
-  // ——— Operadores aritméticos ———
+  // ??? Operadores aritm?ticos ???
   CVector2  operator +  (const CVector2& v) const;
   CVector2  operator -  (const CVector2& v) const;
   CVector2  operator *  (float s)           const;
@@ -20,15 +20,15 @@ public:
   CVector2& operator *= (float s);
   CVector2& operator /= (float s);
 
-  // ——— Comparaciones ———
+  // ??? Comparaciones ???
   bool operator == (const CVector2& v) const;
   bool operator != (const CVector2& v) const;
 
-  // ——— Acceso por índice ———
+  // ??? Acceso por ?ndice ???
   float& operator[](std::size_t i);
   const float& operator[](std::size_t i) const;
 
-  // ——— Funciones geométricas ———
+  // ??? Funciones geom?tricas ???
   float
     length() const;
 
@@ -47,7 +47,7 @@ public:
   void
     normalize();
 
-  // ——— Métodos estáticos ———
+  // ??? M?todos est?ticos ???
   static float
     distance(const CVector2& a, const CVector2& b);
 
@@ -60,6 +60,6 @@ public:
   static CVector2
     one();
 
-  // ——— Depuración ———
+  // ??? Depuraci?n ???
   friend std::ostream& operator<<(std::ostream& os, const CVector2& v);
 };

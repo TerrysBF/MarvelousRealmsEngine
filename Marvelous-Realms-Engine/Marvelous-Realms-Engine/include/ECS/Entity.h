@@ -1,76 +1,69 @@
 #pragma once
-#include "../Prerequisites.h"
+#include "..//Prerequisites.h"
 #include "Component.h"
 
-class Window;
+class
+  Window;
 
 class
-	Entity {
+  Entity {
 public:
-	/**
-	 * @brief Destructor virtual.
-	 */
-	virtual
-		~Entity() = default;
 
-	/**
-	 * @brief Método virtual puro para inicializar el componente.
-	 * @return true si la inicialización fue exitosa, false en caso contrario.
-	 */
-	virtual void
-		start() = 0;
+  virtual
+    ~Entity() = default;
 
-	/**
-	 * @brief Método virtual puro para actualizar el componente.
-	 * @param deltaTime El tiempo transcurrido desde la última actualización.
-	 */
-	virtual void
-		update(float deltaTime) = 0;
+  /**
+   * @brief Pure virtual method for initialization logic.
+   * @param deltaTime Time elapsed since last frame (used for time-dependent setup).
+   */
+  virtual void
+    start() = 0;
 
-	/**
-	 * @brief Método virtual puro para renderizar el componente.
-	 * @param Window Contexto del dispositivo para operaciones gráficas.
-	 */
-	virtual void
-		render(const EngineUtilities::TSharedPointer<Window>& window) = 0;
+  /**
+   * @brief Pure virtual method for updating logic every frame.
+   * @param deltaTime Time elapsed since last frame.
+   */
+  virtual void
+    update(float deltaTime) = 0;
 
-	/**
-	 * @brief Método virtual puro para limpiar el componente.
-	 */
-	virtual void
-		destroy() = 0;
+  /**
+   * @brief Pure virtual method for rendering the component.
+   * @param window Smart pointer to the window where rendering occurs.
+   */
+  virtual void
+    render(const EngineUtilities::TSharedPointer<Window>& window) = 0;
 
-	/**
-	 * @brief Agrega un componente a la entidad.
-	 * @tparam T Tipo del componente, debe derivar de Component.
-	 * @param component Puntero compartido al componente que se va a agregar.
-	 */
-	template<typename T> void
-		addComponent(EngineUtilities::TSharedPointer<T> component) {
-		static_assert(std::is_base_of<Component, T>::value, "T must be derived from Component");
-		components.push_back(component.template dynamic_pointer_cast<Component>());
-	}
+  /**
+   * @brief Pure virtual method for cleaning up resources.
+   */
+  virtual void
+    destroy() = 0;
 
-	/**
-	 * @brief Obtiene un componente de la entidad.
-	 * @tparam T Tipo del componente que se va a obtener.
-	 * @return Puntero compartido al componente, o nullptr si no se encuentra.
-	 */
-	template<typename T>
-	EngineUtilities::TSharedPointer<T>
-		getComponent() {
-		for (auto& component : components) {
-			EngineUtilities::TSharedPointer<T> specificComponent = component.template dynamic_pointer_cast<T>();
-			if (specificComponent) {
-				return specificComponent;
-			}
-		}
 
-		return EngineUtilities::TSharedPointer<T>();
-	}
+  template<typename T> void
+    addComponent(EngineUtilities::TSharedPointer<T> component) {
+    static_assert(std::is_base_of<Component, T>
+      ::value, "T must be derived from Component");
+    components.push_back
+    (component.template dynamic_pointer_cast<Component>());
+  }
+
+  template<typename T>
+  EngineUtilities::TSharedPointer<T>
+    getComponent() {
+    for (auto& component : components) {
+      EngineUtilities::TSharedPointer<T> specificComponent
+        = component.template dynamic_pointer_cast<T>();
+      if (specificComponent) {
+        return specificComponent;
+      }
+    }
+
+    return EngineUtilities::TSharedPointer<T>();
+  }
 
 protected:
-	bool isActive;
-	uint32_t id;
-	std::vector<EngineUtilities::TSharedPointer<Component>> components;
+  bool isActive;
+  uint32_t id;
+  std::vector < EngineUtilities::TSharedPointer<Component>> components;
 };

@@ -2,88 +2,44 @@
 #include "Prerequisites.h"
 #include "Window.h"
 #include "CShape.h"
-#include "ECS/Actor.h" // Sugerencia: usa / para portabilidad
+#include "ECS\Actor.h"
+#include "EngineGUI.h"
 
-/**
- * @brief Clase principal de la aplicación/juego.
- *
- * Se encarga de inicializar sistemas, correr el loop principal (update/render)
- * e iniciar el cierre ordenado liberando recursos. Usa TSharedPointer para
- * manejar memoria compartida de forma segura.
- *
- * Flujo típico:
- *  - run():
- *      - init()
- *      - while(window->isOpen()) { update(); render(); }
- *      - destroy()
- */
-class BaseApp {
+class
+	BaseApp {
 public:
-  /// Constructor por defecto; no hace trabajo pesado (init se encarga de eso).
-  BaseApp() = default;
+	BaseApp() = default;
+	~BaseApp();
 
-  /// Destructor: debe garantizar liberar recursos. Se sugiere llamar destroy().
-  ~BaseApp();
+	// Funcion encargada de ejecutar la aplicacion en main
+	int
+		run();
 
-  /**
-   * @brief Punto de entrada de la app.
-   * @return Código de salida (0 = OK, distinto de 0 = error).
-   *
-   * Orquesta el ciclo de vida completo:
-   *  - Llama a init().
-   *  - Ejecuta el game loop (update/render) mientras la ventana siga abierta.
-   *  - Al terminar, llama a destroy().
-   */
-  int run();
+	// Funcion de inicializacion
+	bool
+		init();
 
-  /**
-   * @brief Inicializa todos los subsistemas necesarios.
-   * @return true si todo salió bien; false si falla algo (ej., crear ventana).
-   *
-   * Aquí es donde:
-   *  - Creas la ventana (resolución, título, VSync).
-   *  - Preparas recursos (texturas, shapes, actores).
-   *  - Inicializas ImGui (si no lo hace Window internamente).
-   */
-  bool init();
+	// Funcion que se actualiza por frame
+	void
+		update();
 
-  /**
-   * @brief Actualiza la lógica del juego por frame.
-   *
-   * Típico contenido:
-   *  - Procesar input/eventos.
-   *  - Avanzar cronómetros (vueltas/tiempo de carrera).
-   *  - Mover jugador y bots (Steering Behaviors: Seek/Arrive/Path Following).
-   *  - Resolver colisiones sencillas.
-   */
-  void update();
+	// Funcion de renderizado
+	void
+		render();
 
-  /**
-   * @brief Dibuja la escena y el HUD por frame.
-   *
-   * Típico contenido:
-   *  - window->clear();
-   *  - dibujar sprites/shapes/escena.
-   *  - dibujar HUD con ImGui (velocidad, vuelta, tiempo, mapa miniatura).
-   *  - window->display();
-   */
-  void render();
+	void
+		destroy();
 
-  /**
-   * @brief Libera recursos y apaga subsistemas.
-   *
-   * Asegura que los smart pointers se reseteen y que la ventana/ImGui
-   * queden correctamente cerrados.
-   */
-  void destroy();
 
 private:
-  /// Ventana principal (wrapper de SFML).
-  EngineUtilities::TSharedPointer<Window> m_windowPtr;
+	std::vector< EngineUtilities::TSharedPointer<Actor>> m_actors;
 
-  /// Ejemplo de shape/entidad gráfica sencilla.
-  EngineUtilities::TSharedPointer<CShape> m_shapePtr;
+	EngineUtilities::TSharedPointer<Window> m_windowPtr;
 
-  /// Actor ECS (ej.: jugador o bot). Nota: nombre corregido.
-  EngineUtilities::TSharedPointer<Actor> m_ACircle;
+	EngineUtilities::TSharedPointer<Actor> m_ACirlce;
+
+	EngineGUI m_engineGUI;
+
+
+
 };

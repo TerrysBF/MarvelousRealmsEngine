@@ -69,10 +69,10 @@
     <ClCompile Include="..\ThirdParties\imgui-sfml-master\imgui-SFML.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="EngineGUI.cpp">
+    <ClCompile Include="src\RosourceManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="RosourceManager.cpp">
+    <ClCompile Include="src\EngineGUI.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -143,14 +143,14 @@
     <ClInclude Include="..\ThirdParties\imgui-sfml-master\imstb_truetype.h">
       <Filter>imgui</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
+    <ClInclude Include="include\ResourceManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EngineGUI.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\Texture.h">
       <Filter>ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineGUI.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
