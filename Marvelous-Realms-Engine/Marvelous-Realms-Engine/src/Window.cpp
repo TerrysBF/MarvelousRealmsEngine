@@ -1,8 +1,13 @@
 #include "window.h"
 #include "EngineGUI.h"
 
+/**
+ * @brief Constructor que crea la ventana principal.
+ * @param width Ancho en píxeles.
+ * @param height Alto en píxeles.
+ * @param title Título de la ventana.
+ */
 Window::Window(int width, int height, const std::string& title) {
-	// Crear ventana con SFML 3
 	m_windowPtr = EngineUtilities::MakeUnique<sf::RenderWindow>(
 		sf::VideoMode({ static_cast<unsigned int>(width),
 										static_cast<unsigned int>(height) }),
@@ -19,30 +24,28 @@ Window::Window(int width, int height, const std::string& title) {
 	}
 }
 
+/// Destructor que libera la ventana.
 Window::~Window() {
 	m_windowPtr.release();
 }
 
-void
+/**
+ * @brief Maneja eventos de la ventana y los pasa a la interfaz gráfica.
+ */
+void 
 Window::handleEvents(EngineGUI& engineGUI) {
-
-	//while (m_windowPtr->isOpen())
-	//{
-	//}
-		// Process events
-	while (const std::optional event = m_windowPtr->pollEvent())
-	{
+	while (const std::optional event = m_windowPtr->pollEvent()) {
 		engineGUI.processEvent(*m_windowPtr, *event);
-		// Close window: exit
 		if (event->is<sf::Event::Closed>())
 			m_windowPtr->close();
 	}
 }
 
-
-bool
+/**
+ * @brief Verifica si la ventana está abierta.
+ */
+bool 
 Window::isOpen() const {
-	// Check that window is not null
 	if (!m_windowPtr.isNull()) {
 		return m_windowPtr->isOpen();
 	}
@@ -52,7 +55,10 @@ Window::isOpen() const {
 	}
 }
 
-void
+/**
+ * @brief Limpia la ventana con un color.
+ */
+void 
 Window::clear(const sf::Color& color) {
 	if (!m_windowPtr.isNull()) {
 		m_windowPtr->clear(color);
@@ -62,7 +68,10 @@ Window::clear(const sf::Color& color) {
 	}
 }
 
-void
+/**
+ * @brief Dibuja un elemento en la ventana.
+ */
+void 
 Window::draw(const sf::Drawable& drawable, const sf::RenderStates& states) {
 	if (!m_windowPtr.isNull()) {
 		m_windowPtr->draw(drawable, states);
@@ -72,8 +81,10 @@ Window::draw(const sf::Drawable& drawable, const sf::RenderStates& states) {
 	}
 }
 
-void
-Window::display() {
+/**
+ * @brief Muestra en pantalla todo lo dibujado.
+ */
+void Window::display() {
 	if (!m_windowPtr.isNull()) {
 		m_windowPtr->display();
 	}
@@ -82,18 +93,20 @@ Window::display() {
 	}
 }
 
-void
+/**
+ * @brief Actualiza el deltaTime.
+ */
+void 
 Window::update() {
-	// Almacena el deltaTime una sola vez
 	deltaTime = clock.restart();
-
 }
 
-void
-Window::render() {
-}
+/// Método vacío para futuras operaciones de renderizado.
+void 
+Window::render() {}
 
-void
+/// Libera los recursos de la ventana.
+void 
 Window::destroy() {
 	m_windowPtr.release();
 }

@@ -1,40 +1,48 @@
 #include "ResourceManager.h"
 
-bool
+/**
+ * @brief Carga una textura en memoria si no está previamente cargada.
+ * @param fileName Nombre del archivo sin extensión.
+ * @param extension Extensión del archivo (por defecto "png").
+ * @return true si la textura queda disponible.
+ */
+bool 
 ResourceManager::loadTexture(const std::string& fileName,
 	const std::string& extension) {
-	// Verificar si la textura esta cargada
 	if (m_textures.find(fileName) != m_textures.end()) {
 		return true;
 	}
 
-	// Crear y cargar la textura
 	auto texture = EngineUtilities::MakeShared<Texture>(fileName, extension);
 	m_textures[fileName] = texture;
 	return true;
 }
 
+/**
+ * @brief Obtiene una textura cargada o devuelve la textura por defecto.
+ * @param fileName Nombre de la textura.
+ * @return Puntero compartido a la textura.
+ */
 EngineUtilities::TSharedPointer<Texture>
 ResourceManager::getTexture(const std::string& fileName) {
-	// Buscar la textura
 	auto it = m_textures.find(fileName);
 	if (it != m_textures.end()) {
 		return it->second;
 	}
 
-	// Mensaje de advertencia
-	std::cerr << "[ResourceManager] Texture not found: " << fileName << ". Using default texture.\n";
+	std::cerr << "[ResourceManager] Texture not found: " 
+		<< fileName << ". Using default texture.\n";
 
-	const std::string defaultKey = "Default";
+	const 
+		std::string defaultKey = "Default";
 
-	// Verificar si la textura por defecto ya est? cargada
 	auto defaultIt = m_textures.find(defaultKey);
 	if (defaultIt != m_textures.end()) {
 		return defaultIt->second;
 	}
 
-	// Cargar textura por defecto
-	auto defaultTexture = EngineUtilities::MakeShared<Texture>(defaultKey, "png");
+	auto defaultTexture = EngineUtilities::
+		MakeShared<Texture>(defaultKey, "png");
 	m_textures[defaultKey] = defaultTexture;
 	return defaultTexture;
 }

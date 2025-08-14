@@ -75,6 +75,9 @@
     <ClCompile Include="src\EngineGUI.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="A_racer.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Memory\TSharedPointer.h">
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="include\ECS\Texture.h">
       <Filter>ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="A_racer.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
